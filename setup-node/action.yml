@@ -1,0 +1,51 @@
+name: 'Checkout and run yarn'
+description: This action checks out the commit, sets up Node and installs deps using yarn.
+author: Paralenz
+branding:
+  color: gray-dark
+  icon: 'aperture'
+inputs:
+    fetch-depth:
+        required: false
+        description: 'Number of commits to fetch during checkout. 0 indicates all history for all branches and tags.'
+        default: '1'
+    node-version:
+        required: false
+        description: 'The node version that should be used'
+        default: '12'
+    token:
+        required: false
+        description: 'Personal access token (PAT) used to fetch the repository.'
+        default: ${{ github.token }}
+    gh-pkg-registry-token:
+        required: false
+        description: 'Auth token for the github package registry'
+
+runs:
+    using: 'composite'
+    steps:
+        - name: Checkout the commit
+          uses: actions/checkout@v2
+          with:
+              fetch-depth: ${{ inputs.fetch-depth }}
+              token: ${{ inputs.token }}
+
+        - name: Set up Node
+          uses: actions/setup-node@v2
+          with:
+              node-version: ${{inputs.node-version}}
+        
+        - name: Set up GitHub package registry auth token
+          run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
+          shell: bash
+
+        - name: Cache dependencies
+          id: cache-deps
+          uses: actions/cache@v2
+          with:
+              path: '**/node_modules'
+              key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+        - name: Install dependencies
+          run: yarn install --frozen-lockfile --ignore-scripts
+          shell: bash
