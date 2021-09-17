@@ -1,0 +1,11 @@
+name: Setup node and install dependenciesode_modulInstall node dependencies
+description: Install all node_modules with a composit action
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - uses: c-hive/gha-yarn-cache@v2
+      run: yarn install --ignore-scripts
