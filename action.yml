@@ -13,4 +13,4 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
     - uses: c-hive/gha-yarn-cache@v2
-      run: yarn install --ignore-scripts
+      shell: yarn install --ignore-scripts
