@@ -1,12 +1,10 @@
-name: "Release"
+name: "Create Release"
 
-# on:
-#   push:
-#     branches:
-#       - "master"
-on:  
-  pull_request:
-    types: [opened, synchronize, edited]
+on:
+  push:
+    branches:
+      - "master"
+
 jobs:
   setup:
     name: Setup
