@@ -1,4 +1,4 @@
-name: 'Checkout and run yarn'
+name: 'Setup node and install dependencies'
 description: This action checks out the commit, sets up Node and installs deps using yarn.
 author: Paralenz
 branding:
