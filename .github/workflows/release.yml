@@ -9,14 +9,24 @@ on:
     types: [opened, synchronize, edited]
 jobs:
   release:
-    name: "Pre Release"
+    name: "Release"
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: Setup node
-      - uses: ./setup-node@v1
+      - name: Checkout the commit
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v2  
+      - name: Set up GitHub package registry auth token
+        run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
+      - name: Cache dependencies
+        id: cache-deps
+        uses: actions/cache@v2
         with:
-            gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
       - name: Lint
         run: yarn lint
 
