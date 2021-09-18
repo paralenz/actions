@@ -28,10 +28,12 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Lint
         run: yarn lint
-      - name: Generate typescript
+      - name: Build
         run: tsc
       - name: Generate Documentation
-        run: node dist/generate-docs.js
+        run: |
+          node dist/generate-docs.js
+          ls -la
       - name: Commit and push change
         run: |
           git commit -am "📝 Update documentation for packages"
