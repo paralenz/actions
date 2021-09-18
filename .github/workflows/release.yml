@@ -1,0 +1,54 @@
+name: "Create Release"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout the commit
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v2  
+      - name: Set up GitHub package registry auth token
+        run: npm config set //npm.pkg.github.com/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Cache dependencies
+        id: cache-deps
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+      - name: Lint
+        run: yarn lint
+      - name: Build
+        run: tsc
+      - name: Generate Documentation
+        run: |
+          node dist/generate-docs.js
+      - name: Commit and push change
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          add: .
+          message: 📝 Update documentation for packages
+      
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      # From now you can access the version
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
+      - name: Create release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: v${{ steps.extract_version.outputs.version }}
+          automatic_release_tag: v${{ steps.extract_version.outputs.version }}
+        
