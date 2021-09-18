@@ -46,11 +46,11 @@ jobs:
       # From now you can access the version
       - name: Print version
         run: echo ${{ steps.extract_version.outputs.version }}
-
-      # - name: Create release
-      # - uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     prerelease: false
-      #     automatic_release_tag: v${{ steps.extract_version.outputs.version }}
+      - name: Create release
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          title: v${{ steps.extract_version.outputs.version }}
+          automatic_release_tag: v${{ steps.extract_version.outputs.version }}
         
