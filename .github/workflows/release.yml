@@ -1,0 +1,31 @@
+name: "Release"
+
+# on:
+#   push:
+#     branches:
+#       - "master"
+on:  
+  pull_request:
+    types: [opened, synchronize, edited]
+jobs:
+  release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Setup node
+      - uses: ./setup-node@v1
+        with:
+            gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Lint
+        run: yarn lint
+
+      # - uses: "marvinpinto/action-automatic-releases@latest"
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     automatic_release_tag: "latest"
+      #     prerelease: true
+      #     title: "Development Build"
+      #     files: |
+      #       LICENSE.txt
+      #       *.jar
