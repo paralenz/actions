@@ -7,7 +7,9 @@
     },
     "devDependencies": {
         "@paralenz/eslint-config-typescript-react": "^0.0.5",
+        "@types/glob": "^7.1.4",
         "@types/js-yaml": "^4.0.3",
+        "@types/node": "^16.9.2",
         "glob": "^7.1.7",
         "js-yaml": "^4.1.0",
         "markdown-tableify": "^0.0.4",
