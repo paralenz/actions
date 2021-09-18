@@ -1,0 +1,14 @@
+name: {{name}}
+description: {{description}}
+author: Paralenz
+
+# inputs:
+#    name:
+#        required: false
+#        description: Description
+#        default: Default value
+
+runs:
+    using: 'composite'
+    steps:
+    # Add your steps here
