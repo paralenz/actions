@@ -50,7 +50,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
+          prerelease: false
           title: v${{ steps.extract_version.outputs.version }}
           automatic_release_tag: v${{ steps.extract_version.outputs.version }}
         
