@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2  
       - name: Set up GitHub package registry auth token
-        run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
+        run: npm config set //npm.pkg.github.com/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v2
