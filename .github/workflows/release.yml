@@ -32,8 +32,8 @@ jobs:
         run: tsc
       - name: Generate Documentation
         run: node dist/generate-docs.js
-      - name: Commit changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: 📝 Update documentation for packages
+      - name: Commit and push change
+        run: |
+          git commit -am "📝 Update documentation for packages"
+          git push
+        
