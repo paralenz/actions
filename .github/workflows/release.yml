@@ -8,10 +8,9 @@ on:
   pull_request:
     types: [opened, synchronize, edited]
 jobs:
-  release:
-    name: "Release"
+  setup:
+    name: Setup
     runs-on: "ubuntu-latest"
-
     steps:
       - name: Checkout the commit
         uses: actions/checkout@v2
@@ -29,13 +28,10 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Lint
         run: yarn lint
-
-      # - uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     automatic_release_tag: "latest"
-      #     prerelease: true
-      #     title: "Development Build"
-      #     files: |
-      #       LICENSE.txt
-      #       *.jar
+      - name: Generate Documentation
+        run: yarn docs
+      - name: Commit changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 📝 Update documentation for packages
