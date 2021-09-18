@@ -28,6 +28,8 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Lint
         run: yarn lint
+      - name: Generate typescript
+        run: tsc
       - name: Generate Documentation
         run: yarn docs
       - name: Commit changes
