@@ -33,9 +33,12 @@ jobs:
       - name: Generate Documentation
         run: |
           node dist/generate-docs.js
-          ls -la
       - name: Commit and push change
-        run: |
-          git commit -am "📝 Update documentation for packages"
-          git push
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          add: .
+      #   run: |
+      #     git commit -am "📝 Update documentation for packages"
+      #     git push
         
