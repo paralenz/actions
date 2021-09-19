@@ -26,5 +26,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./setup-node
-      - name: Run Linting
-        run: yarn lint
+      - run: yarn lint
