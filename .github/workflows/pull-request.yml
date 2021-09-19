@@ -30,5 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./setup-node
+        with: 
+          gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Run Linting
         run: yarn lint
