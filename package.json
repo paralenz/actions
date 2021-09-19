@@ -2,8 +2,10 @@
     "description": "Mono-repo containing all sorts of github actions that is commonly use by the paralenz development team",
     "version": "1.0.1",
     "scripts": {
+        "build": "tsc",
         "lint": "eslint .",
-        "docs": "ts-node ./scripts/generate-docs.ts"
+        "docs": "yarn build && node ./dist/generate-docs.js",
+        "action:new": "yarn build && node ./dist/genereate-new-action.js"
     },
     "devDependencies": {
         "@paralenz/eslint-config-typescript-react": "^0.0.5",

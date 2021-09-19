@@ -19,7 +19,7 @@ files.forEach(file => {
       description: inputs[name].description || ''
     }))
 
-  const table = tableify(values, {
+  const table = values && tableify(values, {
     headers: [{
       name: 'name',
       align: ':---',
