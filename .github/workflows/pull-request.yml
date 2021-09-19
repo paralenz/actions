@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Verify that pull request title starts with a gitmoji
-      - uses: ./gitmoji
+        uses: ./gitmoji
 
   setup:
     name: Setup
