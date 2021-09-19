@@ -38,7 +38,8 @@ runs:
         
       - name: Set up GitHub package registry auth token
         run: |
-          if [ -z ${inputs.gh-pkg-registry-token+x} ];
+          if test -z ${inputs.gh-pkg-registry-token+y}
+            then
             npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
           fi
         shell: bash
