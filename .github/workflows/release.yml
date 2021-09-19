@@ -32,7 +32,7 @@ jobs:
       - run: tsc
 
   documentation:
-    name: Build
+    name: Generate documentation based on action.yml files
     needs: [build]
     runs-on: ubuntu-latest
     steps:
