@@ -15,14 +15,14 @@ jobs:
         id: gitmojies
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./gitmojies.json
-      - name: Echo gitmojies.json
+          path: ./gitmojies.txt
+      - name: Echo gitmojies
         run: echo "${{ steps.gitmojies.outputs.content }}"
-      # - uses: deepakputhraya/action-pr-title@master
-      #   with:
-      #     allowed_prefixes: "${{ steps.gitmojies.outputs.content }}" # title should start with the given prefix
-      #     min_length: 5
-      #     max_length: 72
+      - uses: deepakputhraya/action-pr-title@master
+        with:
+          allowed_prefixes: "${{ steps.gitmojies.outputs.content }}"
+          min_length: 5
+          max_length: 72
 
   setup:
     name: Setup
