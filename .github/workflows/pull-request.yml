@@ -9,6 +9,7 @@ jobs:
     name: Verify that pull request title starts with a gitmoji
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: ls -la
       # - name: Load gitmojies
       #   id: gitmojies
@@ -27,13 +28,13 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: paralenz/actions/setup-node@latest
+      - uses: paralenz/actions/setup-node@master
 
   lint:
     name: Linting
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: paralenz/actions/setup-node@latest
+      - uses: paralenz/actions/setup-node@master
       - name: Run Linting
         run: yarn lint
