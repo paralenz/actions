@@ -11,7 +11,7 @@ const read = (path: string) => fs.readFileSync(path, { encoding: 'utf-8' })
 files.forEach(file => {
   const { inputs, name, description } = JSON.parse(JSON.stringify(yaml.load(read(file))))
 
-  const values = Object.keys(inputs)
+  const values = inputs && Object.keys(inputs)
     .map(name => ({
       name,
       required: inputs[name].required ? 'Yes' : '',
@@ -51,7 +51,7 @@ ${name}
 
 ${description}
     
-${table}
+${table || ''}
     `
 
   try {
