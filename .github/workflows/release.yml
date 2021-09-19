@@ -22,15 +22,6 @@ jobs:
       - uses: ./setup-node
       - run: yarn lint
 
-  build:
-    name: Build
-    needs: [lint]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./setup-node
-      - run: tsc
-
   documentation:
     name: Generate documentation based on action.yml files
     needs: [build]
@@ -38,6 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./setup-node
+      - run: tsc
       - name: Generate Documentation
         run: node dist/generate-docs.js
       - name: Commit and push change
