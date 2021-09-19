@@ -24,7 +24,7 @@ jobs:
 
   documentation:
     name: Generate documentation based on action.yml files
-    needs: [build]
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
