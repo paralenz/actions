@@ -6,7 +6,6 @@ runs:
     steps:
         - name: Checkout the commit
           uses: actions/checkout@v2
-
         - name: Verify that pull request title starts with a gitmoji
           uses: deepakputhraya/action-pr-title@master
           with:

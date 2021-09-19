@@ -5,9 +5,10 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  job1:
+  pr_title:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Verify that pull request title starts with a gitmoji
         uses: ./gitmoji
 
