@@ -37,11 +37,7 @@ runs:
           node-version: ${{inputs.node-version}}
         
       - name: Set up GitHub package registry auth token
-        run: |
-          if test -z ${inputs.gh-pkg-registry-token+y}
-            then
-            npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
-          fi
+        run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
         shell: bash
 
       - name: Cache dependencies
