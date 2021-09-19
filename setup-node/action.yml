@@ -19,7 +19,7 @@ inputs:
     default: ${{ github.token }}
   gh-pkg-registry-token:
     required: false
-    description: 'Auth token for the github package registry'
+    description: 'Auth token for the github package registry. This is needed if a private paralenz package is installed'
     default: ${{ github.token }}
 
 runs:

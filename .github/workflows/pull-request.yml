@@ -6,22 +6,18 @@ on:
 
 jobs:
   pr_title:
-    name: Ensure pull request title starts with a gitmoji
+    name: Ensure that the pull request title starts with a gitmoji
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Verify that pull request title starts with a gitmoji
-        uses: ./gitmoji
+      - uses: ./gitmoji
 
   setup:
     name: Setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup node
-        uses: ./setup-node
-        # with: 
-        #   gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: ./setup-node
 
   lint:
     name: Linting
@@ -30,7 +26,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./setup-node
-        # with: 
-        #   gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Run Linting
         run: yarn lint
