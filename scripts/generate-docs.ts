@@ -4,6 +4,8 @@ import glob from 'glob'
 import yaml from 'js-yaml'
 import tableify from 'markdown-tableify'
 
+const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), { encoding: 'utf-8' }))
+
 const files = glob.sync('**/*.yml', { ignore: ['**/node_modules/**', '**/example/*'] })
 
 const read = (path: string) => fs.readFileSync(path, { encoding: 'utf-8' })
@@ -52,7 +54,7 @@ ${description}
     
 ### Usage:
 \`\`\`yaml
-  - uses: paralenz/${folder}@latest
+  - uses: paralenz/${folder}@${version}
 \`\`\`
 
 ${table ?? ''}
