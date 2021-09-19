@@ -20,6 +20,7 @@ inputs:
   gh-pkg-registry-token:
     required: false
     description: 'Auth token for the github package registry'
+    default: ${{ github.token }}
 
 runs:
     using: 'composite'
