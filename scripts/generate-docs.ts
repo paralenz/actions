@@ -52,7 +52,7 @@ ${name}
 
 ${description}
     
-### Usage:
+## Usage:
 \`\`\`yaml
   - uses: paralenz/actions/${folder}@master
   
@@ -60,7 +60,7 @@ ${description}
   - uses: paralenz/actions/${folder}@v${version}
 \`\`\`
 
-${table ? 'Options' : ''}
+${table ? '## Options' : ''}
 ${table ?? ''}
 
 <hr />

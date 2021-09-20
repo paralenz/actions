@@ -3,7 +3,7 @@ Setup node and install dependencies
 
 This action checks out the commit, sets up Node and installs deps using yarn.
     
-### Usage:
+## Usage:
 ```yaml
   - uses: paralenz/actions/setup-node@master
   
@@ -11,7 +11,7 @@ This action checks out the commit, sets up Node and installs deps using yarn.
   - uses: paralenz/actions/setup-node@v1.0.2
 ```
 
-Options
+## Options
 | Name | Required | Default | Description |
 | :--- | :--- | :--- | :--- |
 | fetch-depth | No | `1` | Number of commits to fetch during checkout. 0 indicates all history for all branches and tags. |
