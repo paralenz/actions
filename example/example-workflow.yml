@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: paralenz/setup-node@master
+      - uses: paralenz/actions/setup-node@master
 
   lint:
     name: Linting
@@ -16,6 +16,6 @@ jobs:
     needs: [setup]
     steps:
       - uses: actions/checkout@v2
-      - uses: paralenz/setup-node@master
+      - uses: paralenz/actions/setup-node@master
       - name: Run linting
         run: yarn lint
