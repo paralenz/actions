@@ -54,7 +54,7 @@ ${description}
     
 ### Usage:
 \`\`\`yaml
-  - uses: paralenz/atcions/${folder}@master
+  - uses: paralenz/actions/${folder}@master
   
   # or lock to a specific version
   - uses: paralenz/actions/${folder}@v${version}
