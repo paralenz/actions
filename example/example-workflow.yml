@@ -2,7 +2,7 @@ name: Example workflow
 on:  
   pull_request:
     types: [opened, synchronize, edited]
-
+jobs:
   setup:
     name: Setup
     runs-on: ubuntu-latest
