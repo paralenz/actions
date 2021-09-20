@@ -5,7 +5,7 @@ The paralenz dev team uses gitmojies to generate changelogs. This action ensures
     
 ### Usage:
 ```yaml
-  - uses: paralenz/atcions/gitmoji@master
+  - uses: paralenz/actions/gitmoji@master
   
   # or lock to a specific version
   - uses: paralenz/actions/gitmoji@v1.0.2
