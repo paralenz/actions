@@ -10,5 +10,7 @@ author: Paralenz
 
 runs:
     using: 'composite'
-    steps:
+    # steps:
     # Add your steps here
+      # - name: Step name
+      #   run: echo "Hello world"
