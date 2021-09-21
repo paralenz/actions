@@ -3,7 +3,7 @@ This is a mono-repo containing all sorts of github actions that is commonly use 
 
 For an example of how to create an action check the [`./example`-directory](https://github.com/paralenz/actions/tree/master/example)
 
-To learn more about how to write a workflow you can read more in the [github documentation](https://docs.github.com/en/actions)
+To learn more about how to write a workflow you can read more in the [github actions documentation](https://docs.github.com/en/actions)
 
 ## Creating new actions
 So you might wonder. But, how do I create a new action.
@@ -12,10 +12,10 @@ You can either use the fast way or the cumbersome.
 
 #### The Fast way
 ```sh
-yarn action:new
+yarn action:new:composite
 ```
 
-#### the Cumbersome way
+#### The Cumbersome way
 1. Create a new folder with the name of your action.
 1. Create an action.yml file.
 1. Enter all the data you need
