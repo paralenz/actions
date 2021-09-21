@@ -2,16 +2,13 @@ name: Example workflow
 on:  
   pull_request:
     types: [opened, synchronize, edited]
-
+jobs:
   setup:
     name: Setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: paralenz/setup-node@v1
-        with:
-          gh-pkg-registry-token: ${{ secrets.NPM_AUTH_TOKEN }}
-          node-version: 16
+      - uses: paralenz/actions/setup-node@master
 
   lint:
     name: Linting
@@ -19,6 +16,6 @@ on:
     needs: [setup]
     steps:
       - uses: actions/checkout@v2
-      - uses: paralenz/setup-node@v1
+      - uses: paralenz/actions/setup-node@master
       - name: Run linting
         run: yarn lint

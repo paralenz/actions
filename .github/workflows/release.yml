@@ -37,7 +37,7 @@ jobs:
         with:
           default_author: github_actions
           add: .
-          message: 📝 Update documentation for packages
+          message: 📝 Update documentation
   
   release:
     name: Create release
