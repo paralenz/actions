@@ -8,7 +8,7 @@ This action checks out the commit, sets up Node and installs deps using yarn.
   - uses: paralenz/actions/setup-node@master
   
   # or lock to a specific version
-  - uses: paralenz/actions/setup-node@v1.0.4
+  - uses: paralenz/actions/setup-node@v1.0.5
 ```
 
 ## Options

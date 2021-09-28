@@ -8,7 +8,7 @@ The paralenz dev team uses gitmojies to generate changelogs. This action ensures
   - uses: paralenz/actions/gitmoji@master
   
   # or lock to a specific version
-  - uses: paralenz/actions/gitmoji@v1.0.4
+  - uses: paralenz/actions/gitmoji@v1.0.5
 ```
 
 
