@@ -1,0 +1,28 @@
+name: Publish a package
+description: >
+  The version number in the package.json will be read to determinate the version
+author: Paralenz
+
+inputs:
+  gh-pkg-registry-token:
+    required: false
+    description: 'Auth token for the github package registry. This is needed if a private paralenz package is installed'
+    default: ${{ github.token }}
+
+runs:
+    using: 'composite'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./setup-node
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
+        shell: bash
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: ${{ inputs.gh-pkg-registry-token }}
+          prerelease: false
+          title: v${{ steps.extract_version.outputs.version }}
+          automatic_release_tag: v${{ steps.extract_version.outputs.version }}
