@@ -1,7 +1,7 @@
 # paralenz/actions/publish-release
-publish-release
+Publish a package
 
-Publish a new release. The version number in the package.json will be read to determinate the version
+The version number in the package.json will be read to determinate the version
 
     
 ## Usage:
@@ -9,7 +9,7 @@ Publish a new release. The version number in the package.json will be read to de
   - uses: paralenz/actions/publish-release@master
   
   # or lock to a specific version
-  - uses: paralenz/actions/publish-release@v1.0.5
+  - uses: paralenz/actions/publish-release@v1.0.6
 ```
 
 ## Options
