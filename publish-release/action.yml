@@ -50,8 +50,3 @@ runs:
           prerelease: false
           title: v${{ steps.extract_version.outputs.version }}
           automatic_release_tag: v${{ steps.extract_version.outputs.version }}
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ inputs.token }}
-          registry: https://npm.pkg.github.com/
-          tag: v${{ steps.extract_version.outputs.version }}
