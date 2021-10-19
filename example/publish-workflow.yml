@@ -1,0 +1,40 @@
+name: Publish Example workflow
+on:
+  push:
+    branches:
+      - master
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - name: Run linting
+        run: yarn lint
+
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - name: Run tests
+        run: yarn test
+
+  publish:
+    name: Publish new release
+    needs: [lint, test]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - uses: paralenz/actions/publish-release@master

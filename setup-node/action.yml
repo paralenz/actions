@@ -17,10 +17,6 @@ inputs:
     required: false
     description: 'Personal access token (PAT) used to fetch the repository.'
     default: ${{ github.token }}
-  gh-pkg-registry-token:
-    required: false
-    description: 'Auth token for the github package registry. This is needed if a private paralenz package is installed'
-    default: ${{ github.token }}
 
 runs:
     using: 'composite'
@@ -37,7 +33,7 @@ runs:
           node-version: ${{inputs.node-version}}
         
       - name: Set up GitHub package registry auth token
-        run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.gh-pkg-registry-token }}
+        run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.token }}
         shell: bash
 
       - name: Cache dependencies

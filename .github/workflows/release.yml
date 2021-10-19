@@ -38,6 +38,14 @@ jobs:
           default_author: github_actions
           add: .
           message: 📝 Update documentation
+      - name: Update TOC
+        run: yarn markdown-toc -i readme.md
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          add: .
+          message: 📝 Update readme.md
   
   release:
     name: Create release

@@ -1,12 +1,36 @@
-name: Publish a package
+name: Easily publish a new version of a package
 description: >
-  The version number in the package.json will be read to determinate the version
+  To make it easy for everyone to publish a new version of a package you can add this action in your workflow.
+  
+  All you need to do is:
+
+  - Change the version number in package.json. Either by manually changing it or by running yarn version.
+  
+  - Add this action to you workflow file
+
+
+  ### Example
+
+  ```yml
+
+  publish:
+    name: Publish release
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - uses: paralenz/actions/publish-release@master
+  ```
+
 author: Paralenz
 
 inputs:
-  gh-pkg-registry-token:
+  token:
     required: false
-    description: 'Auth token for the github package registry. This is needed if a private paralenz package is installed'
+    description: >
+      Auth token for the github package registry.
+      This token defaults to the github.token. If you which to overwrite it you can do that
     default: ${{ github.token }}
 
 runs:
@@ -22,7 +46,7 @@ runs:
         shell: bash
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: ${{ inputs.gh-pkg-registry-token }}
+          repo_token: ${{ inputs.token }}
           prerelease: false
           title: v${{ steps.extract_version.outputs.version }}
           automatic_release_tag: v${{ steps.extract_version.outputs.version }}
