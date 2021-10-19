@@ -11,9 +11,9 @@ inputs:
     required: true
     description: >
       Webhook url for discord
-      
+
       See: https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks
-    default: ${{ secrets.DISCORD_WEBHOOK }}
+    default: ${{ github.DISCORD_WEBHOOK }}
 
 runs:
     using: 'composite'
