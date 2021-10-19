@@ -32,6 +32,8 @@ jobs:
     name: Test discord notification
     needs: [setup]
     runs-on: ubuntu-latest
+    env:
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./discord-notification

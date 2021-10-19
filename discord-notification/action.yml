@@ -5,22 +5,12 @@ author: Paralenz
 inputs:
    message:
     required: true
-    description: >
-      Message to send for discord
-   webhook:
-    required: true
-    description: >
-      Webhook url for discord
-
-      See: https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks
-    default: ${{ github.DISCORD_WEBHOOK }}
-
+    description: Message to send for discord
+   
 runs:
     using: 'composite'
     steps:
       - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ inputs.webhook }}
         uses: Ilshidur/action-discord@master
         with:
           args: ${{ inputs.message }} # 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
