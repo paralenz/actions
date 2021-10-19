@@ -10,13 +10,8 @@ To learn more about how to write a workflow you can read more in the [github act
 <!-- toc -->
 
 - [Notes](#notes)
-  * [How to use composite actions in composite actions](#how-to-use-composite-actions-in-composite-actions)
-    + [Example:](#example)
 - [Creating new actions](#creating-new-actions)
-    + [The Fast way](#the-fast-way)
-    + [The Cumbersome way](#the-cumbersome-way)
 - [Publishing a new version](#publishing-a-new-version)
-  * [So what happens in the `release`-workflow?](#so-what-happens-in-the-release-workflow)
 
 <!-- tocstop -->
 
