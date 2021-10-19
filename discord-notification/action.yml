@@ -1,0 +1,26 @@
+name: Send notification to Discord
+description: Send a Discord notification with a specific message
+author: Paralenz
+
+inputs:
+   message:
+    required: true
+    description: >
+      Message to send for discord
+   webhook:
+    required: true
+    description: >
+      Webhook url for discord
+      
+      See: https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+    default: ${{ secrets.DISCORD_WEBHOOK }}
+
+runs:
+    using: 'composite'
+    steps:
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ inputs.webhook }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: ${{ inputs.message }} # 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
