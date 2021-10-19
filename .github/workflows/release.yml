@@ -39,7 +39,7 @@ jobs:
           add: .
           message: 📝 Update documentation
       - name: Update TOC
-        run: yarn markdown-toc -i readme.md
+        run: yarn markdown-toc -i readme.md --maxdepth 2
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
