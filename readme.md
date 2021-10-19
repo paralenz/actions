@@ -5,10 +5,22 @@ For an example of how to create an action check the [`./example`-directory](http
 
 To learn more about how to write a workflow you can read more in the [github actions documentation](https://docs.github.com/en/actions)
 
-## Creating new actions
-So you might wonder. But, how do I create a new action.
+## Table of content
+::toc::
 
-You can either use the fast way or the cumbersome.
+## Notes
+
+### How to use composite actions in composite actions
+If you wish to use one of these composits actions in another composite action you will need to use the full name (eg `paralenz/actions/setup-node@master`)
+#### Example:
+The the `publish-release`-action depends on `setup-node`. In this case you would need to do `- uses: paralenz/actions/setup-node@master`.
+
+If you use `./setup-node` in a workflow in another repository (lets call it MY_REPOSITORY), the workflow in MY_REPOSITORY will look for for `./setup-node/action.yml`-file in the MY_REPOSITORY.
+
+## Creating new actions
+So you might wonder. But, how do I create a new action?
+
+Dont worry. I got you! You can either use the fast way or the cumbersome.
 
 #### The Fast way
 ```sh
