@@ -1,5 +1,7 @@
 name: Easily publish a new version of a package
 description: >
+  **Note: This action does not publish a npm package this should be done manually**
+  
   To make it easy for everyone to publish a new version of a package you can add this action in your workflow.
   
   All you need to do is:
