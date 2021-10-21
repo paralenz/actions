@@ -17,6 +17,11 @@ inputs:
     required: false
     description: 'Personal access token (PAT) used to fetch the repository.'
     default: ${{ github.token }}
+  registry-url:
+    required: false
+    description: 'The registry where the package will be published'
+    default: 'https://npm.pkg.github.com/paralenz'
+    
 
 runs:
     using: 'composite'
@@ -31,6 +36,7 @@ runs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{inputs.node-version}}
+          registry-url: ${{inputs.registry-url}}
         
       - name: Set up GitHub package registry auth token
         run: npm config set //npm.pkg.github.com/:_authToken=${{ inputs.token }}
