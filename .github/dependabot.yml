@@ -16,7 +16,7 @@ updates:
     labels:
       - dependencies
       - javascript
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 100
     commit-message:
       prefix: ⬆️
 
@@ -31,7 +31,6 @@ updates:
     labels:
       - dependencies
       - action
-    open-pull-requests-limit: 0
     commit-message:
       prefix: 👷
       
