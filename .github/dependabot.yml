@@ -15,7 +15,9 @@ updates:
     #     url: https://npm.pkg.github.com
     #     token: ${{secrets.NPM_AUTH_TOKEN}}
     reviewers:
-      - paralenz/core-team
+      - arelstone
+      - fyrstelin
+      - theill
     labels:
       - dependencies
       - javascript
@@ -27,7 +29,9 @@ updates:
     schedule:
       interval: daily
     reviewers:
-      - paralenz/core-team
+      - arelstone
+      - fyrstelin
+      - theill
     labels:
       - dependencies
       - action
