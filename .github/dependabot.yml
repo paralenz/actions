@@ -9,11 +9,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-    # registries:
-    #   npm-github:
-    #     type: npm-registry
-    #     url: https://npm.pkg.github.com
-    #     token: ${{secrets.NPM_AUTH_TOKEN}}
     reviewers:
       - arelstone
       - fyrstelin
@@ -21,6 +16,7 @@ updates:
     labels:
       - dependencies
       - javascript
+    open-pull-requests-limit: 0
     commit-message:
       prefix: ⬆️
 
@@ -35,6 +31,7 @@ updates:
     labels:
       - dependencies
       - action
+    open-pull-requests-limit: 0
     commit-message:
       prefix: 👷
       
