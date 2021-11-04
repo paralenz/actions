@@ -9,17 +9,17 @@ updates:
     directory: /
     schedule:
       interval: daily
-    registries:
-      npm-github:
-        type: npm-registry
-        url: https://npm.pkg.github.com
-        token: ${{secrets.NPM_AUTH_TOKEN}}
+    # registries:
+    #   npm-github:
+    #     type: npm-registry
+    #     url: https://npm.pkg.github.com
+    #     token: ${{secrets.NPM_AUTH_TOKEN}}
     reviewers:
       - paralenz/core-team
     labels:
       - dependencies
       - javascript
-    commit_message:
+    commit-message:
       prefix: ⬆️
 
   - package-ecosystem: github-actions
@@ -31,7 +31,7 @@ updates:
     labels:
       - dependencies
       - action
-    commit_message:
+    commit-message:
       prefix: 👷
       
 
