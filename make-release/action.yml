@@ -1,8 +1,8 @@
-name: Easily publish a new version of a package
+name: Easily make release of a package
 description: >
-  **Note: This action does not publish a npm package this should be done manually**
+  **Note: This action does not publish a npm (or github) package this should be done manually**
 
-  To make it easy for everyone to publish a new version of a package you can add this action in your workflow.
+  To make it easy for everyone to make a release of a package you can add this action in your workflow.
   
   All you need to do is:
 
@@ -15,14 +15,14 @@ description: >
 
   ```yml
 
-  publish:
-    name: Publish release
+  release:
+    name: Make release
     needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
-      - uses: paralenz/actions/publish-release@master
+      - uses: paralenz/actions/make-release@master
   ```
 
 author: Paralenz
