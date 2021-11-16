@@ -11,13 +11,10 @@ runs:
         working-directory: './gitmoji'
         id: gitmojies
         shell: bash
-      - name: Available gitmojis is
-        run: echo ${{ steps.gitmojies.outputs.gitmojis }}
-        shell: bash
       - uses: actions/checkout@v2
       - name: Verify that pull request title starts with a gitmoji
         uses: deepakputhraya/action-pr-title@master
         with:
-          allowed_prefixes: ${{ steps.gitmojies.outputs.gitmojis }}
+          allowed_prefixes: "${{ steps.gitmojies.outputs.gitmojis }}"
           min_length: 5
           max_length: 72
