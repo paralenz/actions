@@ -2,8 +2,16 @@ name: Ensure that pull request title starts with a gitmoji
 description: The paralenz dev team uses gitmojies to generate changelogs. This action ensures that the PR title starts with one
 author: Paralenz
 runs:
+    
     using: 'composite'
     steps:
+        - name: Fetch gitmojies from origin
+          run: node ./index.js
+          id: gitmojies
+          shell: bash
+        - name: Convert to array
+          run: echo ${{ steps.gitmojies.outputs.gitmojis }}
+          shell: bash
         - uses: actions/checkout@v2
         - name: Verify that pull request title starts with a gitmoji
           uses: deepakputhraya/action-pr-title@master
