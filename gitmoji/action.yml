@@ -2,23 +2,22 @@ name: Ensure that pull request title starts with a gitmoji
 description: The paralenz dev team uses gitmojies to generate changelogs. This action ensures that the PR title starts with one
 author: Paralenz
 runs:
-    
     using: 'composite'
     steps:
-        - uses: actions/checkout@v2
-        - uses: paralenz/actions/setup-node@master
-        - name: Fetch gitmojies from origin
-          run: node ./index.js
-          working-directory: './gitmoji'
-          id: gitmojies
-          shell: bash
-        - name: Convert to array
-          run: echo ${{ steps.gitmojies.outputs.gitmojis }}
-          shell: bash
-        - uses: actions/checkout@v2
-        - name: Verify that pull request title starts with a gitmoji
-          uses: deepakputhraya/action-pr-title@master
-          with:
-            allowed_prefixes: "🎨,:art:,⚡️,:zap:,🔥,:fire:,🩹,:adhesive_bandage:,🐛,:bug:,🚑,:ambulance:,✨,:sparkles:,📝,:memo:,🚀,:rocket:,💄,:lipstick:,🎉,:tada:,✅,:white_check_mark:,🔒,:lock:,🔖,:bookmark:,🚨,:rotating_light:,🚧,:construction:,💚,:green_heart:,⬇️,:arrow_down:,⬆️,:arrow_up:,👷,:construction_worker:,📈,:chart_with_upwards_trend:,♻️,:recycle:,➕,:heavy_plus_sign:,➖,:heavy_minus_sign:,🔨,:hammer:,🔧,:wrench:,🌐,:globe_with_meridians:,✏️,:pencil2:,💩,:poop:,⏪,:rewind:,📦,:package:,👽,:alien:,🚚,:truck:,📄,:page_facing_up:,💥,:boom:,🍱,:bento:,♿️,:wheelchair:,💡,:bulb:,🍻,:beers:,💬,:speech_balloon:,🗃,:card_file_box:,🔊,:loud_sound:,🔇,:mute:,👥,:busts_in_silhouette:,🚸,:children_crossing:,🏗,:building_construction:,📱,:iphone:,🤡,:clown_face:,🥚,:egg:,🙈,:see_no_evil:,📸,:camera_flash:,⚗,:alembic:,🔍,:mag:,🏷️,:label:,🌱,:seedling:,🚩,:triangular_flag_on_post:,🥅,:goal_net:,💫,:dizzy:,🗑,:wastebasket:,📌,:pushpin:,🔀,:twisted_rightwards_arrows:"
-            min_length: 5
-            max_length: 72
+      - uses: actions/checkout@v2
+      - uses: ./setup-node
+      - name: Fetch gitmojies from carloscuesta/gitmoji
+        run: node ./index.js
+        working-directory: './gitmoji'
+        id: gitmojies
+        shell: bash
+      - name: Available gitmojis is
+        run: echo ${{ steps.gitmojies.outputs.gitmojis }}
+        shell: bash
+      - uses: actions/checkout@v2
+      - name: Verify that pull request title starts with a gitmoji
+        uses: deepakputhraya/action-pr-title@master
+        with:
+          allowed_prefixes: ${{ steps.gitmojies.outputs.gitmojis }}
+          min_length: 5
+          max_length: 72
