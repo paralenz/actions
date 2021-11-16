@@ -1,6 +1,22 @@
 name: Ensure that pull request title starts with a gitmoji
-description: The paralenz dev team uses gitmojies to generate changelogs. This action ensures that the PR title starts with one
+description: >
+  We use gitmojis to generate changelogs. This action ensures that the PR title starts with one
+   
+  To make it simple we fetch all the gitmojis from the repository
 author: Paralenz
+inputs:
+  prefix_case_sensitive:
+    description: 'Are the allowed & disallowed prefixes case sensitive?'
+    required: false
+    default: 'false'
+  min_length:
+    description: 'Minimum length of title'
+    required: false
+    default: '5'
+  max_length:
+    description: 'Maximum length of title. -1 to ignore the rule'
+    required: false
+    default: '72'
 runs:
     using: 'composite'
     steps:
@@ -16,5 +32,6 @@ runs:
         uses: deepakputhraya/action-pr-title@master
         with:
           allowed_prefixes: "${{ steps.gitmojies.outputs.gitmojis }}"
-          min_length: 5
-          max_length: 72
+          min_length: ${{ inputs.min_length }}
+          max_length: ${{ inputs.max_length }}
+          prefix_case_sensitive: ${{ inputs.prefix_case_sensitive }}
