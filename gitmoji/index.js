@@ -13,4 +13,4 @@ axios.get('https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/dat
     ].join(',')
   }))
   .then(r => r.join(','))
-  .then(gitmojis => core.setOutput('gitmojis', gitmojis))
+  .then(gitmojis => core.setOutput('gitmojis', `${gitmojis}`))
