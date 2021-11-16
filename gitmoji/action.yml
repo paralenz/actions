@@ -7,6 +7,7 @@ runs:
     steps:
         - name: Fetch gitmojies from origin
           run: node ./index.js
+          working-directory: './gitmoji'
           id: gitmojies
           shell: bash
         - name: Convert to array
