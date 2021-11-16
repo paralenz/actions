@@ -5,6 +5,8 @@ runs:
     
     using: 'composite'
     steps:
+        - uses: actions/checkout@v2
+        - uses: paralenz/actions/setup-node@master
         - name: Fetch gitmojies from origin
           run: node ./index.js
           working-directory: './gitmoji'
