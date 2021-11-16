@@ -7,7 +7,7 @@ axios.get('https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/dat
   .then(({ gitmojis }) => Object.keys(gitmojis).map(key => {
     const { name, emoji } = gitmojis[key]
 
-    return [name, emoji].join(',')
+    return [`:${name}:`, emoji].join(',')
   }))
   .then(r => r.join(','))
   .then(gitmojis => core.setOutput('gitmojis', gitmojis))
