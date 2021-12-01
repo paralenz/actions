@@ -50,7 +50,8 @@ runs:
           echo "Committed version: ${{ steps.cpv.outputs.committed-version }}"
           echo "Published version: ${{ steps.cpv.outputs.published-version }}"
           echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
-          
+        shell: bash
+
       - name: Make release
         if: ${{steps.cpv.outputs.is-new-version == 'true' }}
         uses: marvinpinto/action-automatic-releases@latest
