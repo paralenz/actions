@@ -24,4 +24,5 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: yarn lint
