@@ -40,24 +40,16 @@ runs:
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
-      - name: Check package version
-        uses: PostHog/check-package-version@v2
-        id: cpv
-
-      - name: Skip publish
-        if: ${{steps.cpv.outputs.is-new-version == 'false' }}
-        run: |
-          echo "::error Release will not be published. The version number has not been bumped"
-          echo "Committed version: ${{ steps.cpv.outputs.committed-version }}"
-          echo "Published version: ${{ steps.cpv.outputs.published-version }}"
-          echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
         shell: bash
-
-      - name: Make release
-        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
-        uses: marvinpinto/action-automatic-releases@latest
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ inputs.token }}
           prerelease: false
-          title: v${{ steps.cpv.outputs.committed-version }}
-          automatic_release_tag: v${{ steps.cpv.outputs.committed-version }}
+          title: v${{ steps.extract_version.outputs.version }}
+          automatic_release_tag: v${{ steps.extract_version.outputs.version }}
+      
