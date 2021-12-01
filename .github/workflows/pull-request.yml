@@ -18,12 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./setup-node
-      - run: |
-          echo '::warning:: this is a warning'
-          echo "::stop-commands::`echo -n ${{ github.token }} | sha256sum | head -c 64`"
-          echo '::warning:: this will NOT be a warning'
-          echo "::`echo -n ${{ github.token }} | sha256sum | head -c 64`::"
-          echo '::warning:: this is a warning again'
 
   lint:
     name: Linting
@@ -41,4 +35,23 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - uses: ./setup-node
-      - uses: ./make-release
+      - name: Check package version
+        id: cpv
+        uses: PostHog/check-package-version@v2
+      - name: Make release
+        if: ${{steps.cpv.outputs.is-new-version != 'true' }}
+        run: |
+          echo "::error Release will not be published. The version number has not been bumped"
+          echo "Committed version: ${{ steps.cpv.outputs.committed-version }}"
+          echo "Published version: ${{ steps.cpv.outputs.published-version }}"
+          echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
+        shell: bash
+
+      - name: Make release
+        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ inputs.token }}
+          prerelease: false
+          title: v${{ steps.cpv.outputs.committed-version }}
+          automatic_release_tag: v${{ steps.cpv.outputs.committed-version }}
