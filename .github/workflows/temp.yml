@@ -1,0 +1,32 @@
+name: temp-pull-request
+on:
+  pull_request:
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./setup-node
+      - name: Check package version
+        uses: PostHog/check-package-version@v2
+        id: cpv
+
+      - name: Skip publish
+        if: ${{steps.cpv.outputs.is-new-version == 'false' }}
+        run: |
+          echo "::error Release will not be published. The version number has not been bumped"
+          echo "Committed version: ${{ steps.cpv.outputs.committed-version }}"
+          echo "Published version: ${{ steps.cpv.outputs.published-version }}"
+          echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
+        shell: bash
+
+      - name: Make release
+        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ github.token }}
+          prerelease: true
+          draft: true
+          title: v${{ steps.cpv.outputs.committed-version }}
+          automatic_release_tag: v${{ steps.cpv.outputs.committed-version }}
