@@ -34,22 +34,26 @@ inputs:
       Auth token for the github package registry.
       This token defaults to the github.token. If you which to overwrite it you can do that
     default: ${{ github.token }}
+  publishToPkg: bool
 
 runs:
     using: 'composite'
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
-      - name: Extract version
-        id: extract_version
-        uses: Saionaro/extract-package-version@v1.0.6
-      - name: Print version
-        run: echo ${{ steps.extract_version.outputs.version }}
-        shell: bash
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Check package version
+        id: cpv
+        uses: PostHog/check-package-version@v2
+      - name: Make release
+        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ inputs.token }}
           prerelease: false
-          title: v${{ steps.extract_version.outputs.version }}
-          automatic_release_tag: v${{ steps.extract_version.outputs.version }}
+          title: v${{ steps.cpv.outputs.committed-version }}
+          automatic_release_tag: v${{ steps.cpv.outputs.committed-version }}
+      - name: Publish
+        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
+        run: echo 'true'
+        shell: bash
       
