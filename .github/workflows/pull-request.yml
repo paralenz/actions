@@ -26,5 +26,6 @@ jobs:
     steps: 
       - run: ls -la
       - uses: actions/checkout@v2
+      - uses: ./setup-node
       - run: ls -la
       - run: yarn lint
