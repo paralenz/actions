@@ -34,7 +34,6 @@ inputs:
       Auth token for the github package registry.
       This token defaults to the github.token. If you which to overwrite it you can do that
     default: ${{ github.token }}
-  publishToPkg: bool
 
 runs:
     using: 'composite'
@@ -45,6 +44,14 @@ runs:
         id: cpv
         uses: PostHog/check-package-version@v2
       - name: Make release
+        if: ${{steps.cpv.outputs.is-new-version != 'true' }}
+        run: |
+          echo "::error Release will not be published. The version number has not been bumped"
+          echo "Committed version: ${{ steps.cpv.outputs.committed-version }}"
+          echo "Published version: ${{ steps.cpv.outputs.published-version }}"
+          echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
+          
+      - name: Make release
         if: ${{steps.cpv.outputs.is-new-version == 'true' }}
         uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -52,8 +59,3 @@ runs:
           prerelease: false
           title: v${{ steps.cpv.outputs.committed-version }}
           automatic_release_tag: v${{ steps.cpv.outputs.committed-version }}
-      - name: Publish
-        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
-        run: echo 'true'
-        shell: bash
-      
