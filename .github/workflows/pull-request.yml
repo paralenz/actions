@@ -23,6 +23,8 @@ jobs:
     name: Linting
     needs: [setup]
     runs-on: ubuntu-latest
-    steps:
+    steps: 
+      - run: ls -la
       - uses: actions/checkout@v2
+      - run: ls -la
       - run: yarn lint
