@@ -24,8 +24,9 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps: 
-      - run: ls -la
       - uses: actions/checkout@v2
       - uses: ./setup-node
-      - run: ls -la
       - run: yarn lint
+      - name: WARN!!!
+        run: |
+          echo '::warning:: this is a warning'
