@@ -33,7 +33,7 @@ jobs:
       - name: Generate Documentation
         run: node dist/generate-docs.js
       - name: Commit and push change
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
           default_author: github_actions
           add: .
@@ -41,7 +41,7 @@ jobs:
       - name: Update TOC
         run: yarn markdown-toc -i readme.md --maxdepth 2
       - name: Commit changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
           default_author: github_actions
           add: .
