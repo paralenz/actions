@@ -8,7 +8,7 @@ inputs:
   node-version:
     required: false
     description: 'The node version that should be used'
-    default: '12'
+    default: '16'
   token:
     required: false
     description: 'Personal access token (PAT) used to fetch the repository.'
