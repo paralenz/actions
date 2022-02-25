@@ -10,26 +10,26 @@ inputs:
     required: true
     description: The url for the webhook
     default: ${{ github.DISCORD_WEBHOOK  }}
-  title:
-    required: true
-    description: The title for the message
-  description:
-    required: true
-    description: The description for the message. This can be markdown or a simple string
-  color:
-    required: false
-    description: The color of the message
-  author:
-    required: false
-    description: Who should the message be sent by
-    default: Luke Sky
-  avatar-url:
-    required: false
-    description: Url for the avatar
-    default: ${{ secrets.AVATAR_URL }}
-  embeds:
-    required: false
-    description: JSON embeds
+  # title:
+  #   required: true
+  #   description: The title for the message
+  # description:
+  #   required: true
+  #   description: The description for the message. This can be markdown or a simple string
+  # color:
+  #   required: false
+  #   description: The color of the message
+  # author:
+  #   required: false
+  #   description: Who should the message be sent by
+  #   default: Luke Sky
+  # avatar-url:
+  #   required: false
+  #   description: Url for the avatar
+  #   default: ${{ secrets.AVATAR_URL }}
+  # embeds:
+  #   required: false
+  #   description: JSON embeds
   
 
 runs:
