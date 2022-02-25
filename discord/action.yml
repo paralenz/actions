@@ -1,0 +1,51 @@
+name: Send a message on discord
+description: >
+  **Note: **
+  ```
+
+author: Paralenz
+
+inputs:
+  webhook-url:
+    required: true
+    description: The url for the webhook
+    default: ${{ github.DISCORD_WEBHOOK  }}
+  title:
+    required: true
+    description: The title for the message
+  description:
+    required: true
+    description: The description for the message. This can be markdown or a simple string
+  color:
+    required: false
+    description: The color of the message
+  author:
+    required: false
+    description: Who should the message be sent by
+    default: Luke Sky
+  avatar-url:
+    required: false
+    description: Url for the avatar
+    default: ${{ secrets.AVATAR_URL }}
+  embeds:
+    required: false
+    description: JSON embeds
+  
+
+runs:
+    using: 'composite'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: tsickert/discord-webhook@v4.0.0
+        with:
+          webhook-url: ${{input.webhook-url}}
+          # content: ${{input.title}}
+          # embed-description: ${{input.description}}
+          # avatar-url: ${{input.avatar-url}}
+          # username: ${{input.author}}
+          raw-data: {
+              "content": "See greeting below",
+              "embeds": [{"title":"Hello","description":"World"}]
+            }
+      
+      
