@@ -8,7 +8,7 @@
         "action:new:composite": "yarn build && node ./dist/genereate-composite-action.js"
     },
     "devDependencies": {
-        "@paralenz/eslint-config-typescript-react": "^0.0.5",
+        "@paralenz/eslint-config-typescript-react": "^1.0.7",
         "@types/glob": "^7.2.0",
         "@types/inquirer": "^8.2.0",
         "@types/js-yaml": "^4.0.5",
@@ -22,5 +22,10 @@
         "mustache": "^4.2.0",
         "ts-node": "^10.5.0",
         "typescript": "^4.5.5"
+    },
+    "dependencies": {
+        "@actions/core": "^1.6.0",
+        "@actions/github": "^5.0.0",
+        "discord-webhook-node": "^1.1.8"
     }
 }

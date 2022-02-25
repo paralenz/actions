@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./setup-node
       - uses: ./discord
         with:
           webhook-url: https://discord.com/api/webhooks/946770783190024193/WYPHnSx011e5nLxKEIGDovNLYHADaeHaBgTZNW9OMcqMuPLKjRtjGcd3nT6A_hSRuPna
           title: Carsten is testing
           description: Does this really work?
+          
 
