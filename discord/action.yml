@@ -43,9 +43,6 @@ runs:
           # embed-description: ${{input.description}}
           # avatar-url: ${{input.avatar-url}}
           # username: ${{input.author}}
-          raw-data: {
-              "content": "See greeting below",
-              "embeds": [{"title":"Hello","description":"World"}]
-            }
+          raw-data: {"content": "See greeting below","embeds": [{"title":"Hello","description":"World"}]}
       
       
