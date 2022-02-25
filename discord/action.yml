@@ -22,17 +22,9 @@ inputs:
     required: false
     description: Who should the message be sent by
     default: Luke Sky
-  severity:
-    required: false
-    description: The severity level of the notification, either info, warn, or error
-    default: info
-  thumbnail-url:
-    required: false
-    description: Url for the avatar
-    default: ${{ secrets.AVATAR_URL }}
 
 runs:
   using: 'node12'
-  main: './index.js'
+  main: 'index.js'
       
       

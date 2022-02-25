@@ -14,7 +14,7 @@ async function run () {
     .addField('First field', 'this is inline', true)
     .addField('Second field', 'this is not inline')
     .setColor('#00b0f4')
-    .setThumbnail(getInput('thumbnail-url'))
+    .setThumbnail('https://assets.paralenz.com/favicon/favicon-96x96.png')
     .setDescription('Oh look a description :)')
     .setImage('https://cdn.discordapp.com/embed/avatars/0.png')
     .setFooter('Hey its a footer', 'https://cdn.discordapp.com/embed/avatars/0.png')
