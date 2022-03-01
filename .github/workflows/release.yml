@@ -10,7 +10,7 @@ jobs:
     name: Setup
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
   
   lint:
@@ -18,7 +18,7 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
       - run: yarn lint
 
@@ -27,7 +27,7 @@ jobs:
     needs: [lint]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
       - run: tsc
       - name: Generate Documentation
@@ -52,7 +52,7 @@ jobs:
     needs: [documentation]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
       - uses: ./make-release
 
