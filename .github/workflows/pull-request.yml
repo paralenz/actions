@@ -9,14 +9,14 @@ jobs:
     name: Ensure that the pull request title starts with a gitmoji
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./gitmoji
 
   setup:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
 
   lint:
@@ -24,6 +24,6 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./setup-node
       - run: yarn lint
