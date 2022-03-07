@@ -20,4 +20,4 @@ inputs:
 #     value:
 runs:
     using: 'node16'
-    main: 'dist/changelog.js'
+    main: 'changelog.js'

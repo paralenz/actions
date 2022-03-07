@@ -2,7 +2,7 @@ import * as Core from '@actions/core'
 import * as Github from '@actions/github'
 import { emojies } from './categories'
 
-async function run (): Promise<void> {
+async function run () {
   const client = Github.getOctokit(Core.getInput('token', { required: true }))
 
   const [owner, repo] = Core.getInput('repo', { required: true }).split('/')
@@ -39,7 +39,7 @@ async function run (): Promise<void> {
       return shouldBeRemoved ? undefined : title
     })
     .filter(Boolean)
-    .reduce((acc: Array<string>, title) => {
+    .reduce((acc, title) => {
       if (!title.startsWith(':')) {
         return [...acc, title]
       }
@@ -53,13 +53,10 @@ async function run (): Promise<void> {
       ]
     }, [])
     .reduce(
-      (
-        acc: Array<{category: string, title: string, messages: Array<string>}>,
-        title: string
-      ) => {
+      (acc, title) => {
         const [prefix] = title.split(' ')
 
-        const { category }: any = Object.values(emojies).find(item => item.emoji === prefix) || {}
+        const { category } = Object.values(emojies).find(item => item.emoji === prefix) || {}
         const index = acc.findIndex(i => i.category === category)
         if (index === -1) {
           return acc

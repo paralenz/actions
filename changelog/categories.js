@@ -1,13 +1,4 @@
-export type Gitmoji = {
-    emoji: string
-    code: string
-    description: string
-    name: string
-    category: 'none' | 'feature' | 'fix' | 'tweak' | 'performance' | 'chore'
-        | 'deployment' | 'dependency' | 'infrastructure'
-
-  }
-export const emojies: ReadonlyArray<Gitmoji> = [
+export const emojies = [
   {
     emoji: '🎨',
     code: ':art:',
@@ -501,7 +492,7 @@ export const emojies: ReadonlyArray<Gitmoji> = [
 ]
 
 export const categories = Object.values(emojies).reduce(
-  (categorized: Record<string, Array<string>>, entry: Gitmoji) => categorized[entry.category]
+  (categorized, entry) => categorized[entry.category]
     ? {
       ...categorized,
       [entry.category]: [
