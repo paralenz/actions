@@ -30,7 +30,7 @@ allFiles.forEach(file => {
 
   const [folder] = file.split('/')
   const packageName = `${folder}/README.md`
-  const outPath = path.join(__dirname, '..', packageName)
+  const outPath = path.join(__dirname, '..', '..', packageName)
 
   const content = `# paralenz/actions/${folder}
 ${name}
@@ -39,7 +39,7 @@ ${description}
     
 ${howToUse(
     folder,
-    JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), { encoding: 'utf-8' })).version)
+    JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'), { encoding: 'utf-8' })).version)
 }
 
 ${table ? '## Options' : ''}
