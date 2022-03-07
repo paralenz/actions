@@ -1,0 +1,23 @@
+name: changelog
+description: Generate changelog based on commits
+author: Paralenz
+
+inputs:
+   token:
+       required: true
+       description: Your github PAT
+   repository:
+       required: true
+       description: The repository you want get commits from
+       default: 'paralenz/mobile'
+   branch:
+       required: true
+       description: The branch in the repo you want to get commits from
+       default: 'master'
+# outputs:
+#   changelog:
+#     description: The changes since last release
+#     value:
+runs:
+    using: 'node16'
+    main: 'dist/changelog.js'

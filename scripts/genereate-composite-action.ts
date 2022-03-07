@@ -1,9 +1,9 @@
 import inquirer from 'inquirer'
 import Mustache from 'mustache'
-import fs from 'fs'
-import path from 'path'
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs'
+import { join } from 'path'
 
-const template = fs.readFileSync(path.join(__dirname, '../scripts', 'templates', 'action.txt'), { encoding: 'utf-8' })
+const template = readFileSync(join(__dirname, '../scripts', 'templates', 'action.txt'), { encoding: 'utf-8' })
 
 const validate = (input: string) => {
   if (input.length < 1) {
@@ -20,11 +20,11 @@ const main = async () => {
   ])
   const output = Mustache.render(template, answers)
 
-  if (!fs.existsSync(answers.folder)) {
+  if (!existsSync(answers.folder)) {
     console.log(`🎉 ${answers.folder} was created`)
-    fs.mkdirSync(answers.folder)
+    mkdirSync(answers.folder)
   }
-  fs.writeFileSync(path.join(__dirname, '..', answers.folder, 'action.yml'), output)
+  writeFileSync(join(__dirname, '..', answers.folder, 'action.yml'), output)
 
   console.log('🎉 action.yml was created')
 }
