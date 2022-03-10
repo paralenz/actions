@@ -1,6 +1,6 @@
 {
     "description": "Mono-repo containing all sorts of github actions that is commonly use by the paralenz development team",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "scripts": {
         "build": "tsc",
         "lint": "eslint .",
