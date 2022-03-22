@@ -1,6 +1,6 @@
 {
     "description": "Mono-repo containing all sorts of github actions that is commonly use by the paralenz development team",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "scripts": {
         "build": "tsc",
         "lint": "eslint .",
@@ -8,7 +8,7 @@
         "action:new:composite": "yarn build && node ./dist/genereate-composite-action.js"
     },
     "devDependencies": {
-        "@paralenz/eslint-config-typescript-react": "^0.0.5",
+        "@paralenz/eslint-config-typescript-react": "^1.0.7",
         "@types/glob": "^7.2.0",
         "@types/inquirer": "^8.2.0",
         "@types/js-yaml": "^4.0.5",
