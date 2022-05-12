@@ -1,8 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import glob from 'glob'
 import yaml from 'js-yaml'
 import tableify from 'markdown-tableify'
+import path from 'path'
+import fs from 'fs'
 import { doNotEditDisclaimer } from './do-not-edit-readme-discpalimer'
 import { howToUse } from './how-to-use'
 
